@@ -25,3 +25,163 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.face-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.face-avatar {
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+  min-height: 220px;
+  box-shadow: 0 20px 60px rgba(60, 165, 255, 0.2);
+  animation: faceBreathe 6s ease-in-out infinite;
+}
+
+.face-gloss {
+  position: absolute;
+  inset: 10%;
+  border-radius: inherit;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.5), transparent);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.face-eye {
+  position: absolute;
+  top: 38%;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.15);
+  animation: faceBlink 6s infinite;
+}
+
+.face-eye-left {
+  left: 28%;
+}
+
+.face-eye-right {
+  right: 28%;
+  animation-delay: 0.4s;
+}
+
+.face-mouth {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  width: 80px;
+  height: 40px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
+}
+
+.face-mouth-happy {
+  height: 30px;
+  border-bottom-left-radius: 999px;
+  border-bottom-right-radius: 999px;
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+}
+
+.face-mouth-sad {
+  height: 20px;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.face-mouth-surprise {
+  width: 32px;
+  height: 48px;
+  border-radius: 999px;
+}
+
+.face-mouth-neutral {
+  height: 18px;
+}
+
+.face-cheek {
+  position: absolute;
+  top: 55%;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(1px);
+  animation: faceGlow 4s ease-in-out infinite;
+}
+
+.face-cheek-left {
+  left: 18%;
+}
+
+.face-cheek-right {
+  right: 18%;
+  animation-delay: 1.2s;
+}
+
+.face-ring {
+  position: absolute;
+  inset: -12%;
+  border-radius: inherit;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  animation: faceOrbit 8s linear infinite;
+}
+
+.face-caption {
+  position: absolute;
+  bottom: -18%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+@keyframes faceBlink {
+  0%,
+  46%,
+  48%,
+  100% {
+    transform: scaleY(1);
+  }
+  47% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes faceBreathe {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes faceGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.45);
+  }
+}
+
+@keyframes faceOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
