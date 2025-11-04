@@ -55,7 +55,7 @@ export const useAudioSignature = () => {
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const dataArrayRef = useRef<Float32Array | null>(null);
+  const dataArrayRef = useRef<Float32Array<ArrayBuffer> | null>(null);
   const rafRef = useRef<number | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const lastEmitRef = useRef(0);
@@ -114,7 +114,7 @@ export const useAudioSignature = () => {
       const analyser = ctx.createAnalyser();
       analyser.fftSize = 2048;
       analyserRef.current = analyser;
-      dataArrayRef.current = new Float32Array(analyser.fftSize);
+      dataArrayRef.current = new Float32Array(analyser.fftSize) as Float32Array<ArrayBuffer>;
       source.connect(analyser);
       setEnabled(true);
       rafRef.current = requestAnimationFrame(loop);

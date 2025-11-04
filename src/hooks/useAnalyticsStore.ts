@@ -60,7 +60,8 @@ export const useAnalyticsStore = (faceSnapshot: FaceSnapshot | null, audioSnapsh
       if (!sample.expression) return;
       expressionMap.set(sample.expression, (expressionMap.get(sample.expression) ?? 0) + 1);
     });
-    const dominant = [...expressionMap.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "indefinido";
+    const expressionEntries = Array.from(expressionMap.entries());
+    const dominant = expressionEntries.sort((a, b) => b[1] - a[1])[0]?.[0] ?? "indefinido";
 
     return {
       engagement: Number(Math.min(1, attentionAvg).toFixed(2)),
